@@ -19,6 +19,8 @@ I am an AI enthusiast with hands-on experience in building machine learning and 
 **Tools & IDEs**: Visual Studio, Git/GitHub
 
 Projects
+
+
 **1. Predictive Analytics: House Price Prediction**
 
 Description: Built a regression model to predict house prices based on features such as square footage, number of bedrooms, and house age.
@@ -41,6 +43,9 @@ Predicted price for new house: $578,000
 
 
 **Tech Stack: Python, Pandas, Scikit-learn**
+
+
+
 
 **2. Image Classification & OCR Text Extraction with Document Type Classification**
 
@@ -65,6 +70,9 @@ Document Type: payslip
 
 
 **Tech Stack: Python, TensorFlow/Keras, LSTM, OCR, Pandas**
+
+
+
 
 **Learning Journey & Goals**
 
