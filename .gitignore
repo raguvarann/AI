@@ -1,1 +1,6 @@
-tf_env/Lib/site-packages/tensorflow/python/_pywrap_tensorflow_common.dll
+# Exclude all common virtual environment folders
+.venv/
+tf_venv/
+tf_env/
+venv/
+env/
