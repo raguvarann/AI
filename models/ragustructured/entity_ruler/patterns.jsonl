@@ -1,0 +1,5 @@
+{"label":"TICKER","pattern":[{"TEXT":{"REGEX":"^\\$[A-Z]{1,5}$"}}]}
+{"label":"PERCENTAGE","pattern":[{"LIKE_NUM":true},{"ORTH":"%"}]}
+{"label":"FIN_INST","pattern":"RBI"}
+{"label":"FIN_INST","pattern":"HDFC"}
+{"label":"FIN_INST","pattern":"AXIS"}
