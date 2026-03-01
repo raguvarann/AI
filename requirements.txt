@@ -1,0 +1,14 @@
+transformers
+torch
+pandas
+numpy
+scikit-learn
+tensorflow
+pdfplumber
+Pillow
+pytesseract
+spacy
+google-cloud-aiplatform
+langchain
+langchain-community
+ollama

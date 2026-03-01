@@ -1,83 +1,69 @@
-**About Me**
+About: I am an AI enthusiast with hands-on experience building machine learning and deep learning solutions focused on predictive modeling, computer vision, and natural language processing. I experiment with real-world datasets, optimize models, and build deployable AI systems that extract actionable insights.
 
-I am an AI enthusiast with hands-on experience in building machine learning and deep learning solutions. My work focuses on predictive modeling, computer vision, and natural language processing. I enjoy experimenting with real-world datasets, optimizing models, and deploying AI systems that can extract actionable insights.
+Small collection of Python scripts demonstrating ML, NLP, OCR, and LLM integrations.
 
-**Skills & Technologies**
+Core technologies: Python, NumPy, Pandas, scikit-learn, TensorFlow/Keras, Hugging Face Transformers, spaCy, pytesseract (Tesseract OCR), Pillow, LangChain (Ollama), Google Vertex AI client.
+ 
+Quick start:
 
-**Programming Languages**: Python
+# AI Examples (small collection)
 
-**Machine Learning**: Scikit-learn, Linear Regression, Ensemble Methods
+## Overview
 
-**Deep Learning**: TensorFlow, Keras, LSTM
+This repository contains a collection of small Python scripts and model artifacts that demonstrate common AI tasks: natural language processing (spaCy, Hugging Face), OCR (pytesseract), simple predictive modeling (scikit-learn / TensorFlow), and basic LLM / Vertex AI examples.
 
-**Computer Vision & OCR**: OpenCV, PIL, Tesseract OCR
+## Quick start
 
-**Data Handling & Visualization**: Pandas, NumPy, Matplotlib, Seaborn
+1. Create and activate a virtual environment:
 
-**Text Processing & NLP**: Tokenization, Text Classification, Label Encoding
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-**Tools & IDEs**: Visual Studio, Git/GitHub
+2. Install dependencies:
 
-Projects
+```powershell
+pip install -r requirements.txt
+```
 
+## Notes
 
-**1. Predictive Analytics: House Price Prediction**
+- This repo includes a `models/` folder with prebuilt spaCy and RAG model files used by several scripts.
+- A Python virtual environment `tf_env/` is present in the workspace; you can use it instead of creating a new one if desired.
 
-Description: Built a regression model to predict house prices based on features such as square footage, number of bedrooms, and house age.
+## Common scripts (quick descriptions)
 
-**Key Features:**
+- `nlp.py`: small spaCy examples and pipeline usage.
+- `Unstructured.py`: uses transformer-based models / NER examples.
+- `doc classification.py`: simple document classification demo (Keras / LSTM).
+- `ocr.py`: OCR demo using `pytesseract` and `Pillow`.
+- `Predictive.py`, `predictive_userinteraction.py`: scikit-learn predictive demos and user interaction examples.
+- `simple_llm.py`: example LLM integration (LangChain / Ollama).
+- `simple_vertex.py`: starter for Google Vertex AI client usage.
+- `ragumodelimport.py`, `ragumodelmerge.py`: utilities for importing/merging RAG model artifacts.
+- `modelnlp.py`, `Structured.py`, `Unstructured.py`: other NLP examples and structured/unstructured data handling.
 
-Cleaned and scaled input features using StandardScaler.
+## Models
 
-Implemented linear regression to predict house prices.
+The `models/` directory contains two subfolders (`ragustructured` and `raguunstructured`) with tokenizer configs and trained model files. Those are used by the RAG-related scripts.
 
-Evaluated model performance using Mean Squared Error (MSE).
+## Running a script
 
-Demonstrated prediction on new data points.
+Example: run the OCR demo
 
-**Sample Output:**
+```powershell
+.\.venv\Scripts\Activate.ps1
+python ocr.py
+```
 
-Predicted Prices: [498,000, 601,000]
-Mean Squared Error: 2.3e+09
-Predicted price for new house: $578,000
+## Additional setup
 
+- If you use spaCy scripts, you may need to download a model, e.g.:
 
-**Tech Stack: Python, Pandas, Scikit-learn**
+```powershell
+python -m spacy download en_core_web_sm
+```
 
+If you want, I can add example commands or small README sections for any specific script—tell me which one to document next.
 
-
-
-**2. Image Classification & OCR Text Extraction with Document Type Classification**
-
-Description: Developed a pipeline to classify images and extract text from documents, then categorize documents into types (e.g., payslip, rental, invoice) using deep learning.
-
-**Key Features:**
-
-Extracted text from images using Tesseract OCR.
-
-Built an LSTM-based neural network for text classification.
-
-Preprocessed text with tokenization and sequence padding.
-
-Trained and evaluated the model with multi-class classification.
-
-Developed a classify_document() function for predicting document type.
-
-**Sample Output:**
-
-Extracted Text: Employee salary for February 2026: $1000
-Document Type: payslip
-
-
-**Tech Stack: Python, TensorFlow/Keras, LSTM, OCR, Pandas**
-
-
-
-
-**Learning Journey & Goals**
-
-Continuously improving skills in machine learning, deep learning, and NLP.
-
-Experimenting with real-world datasets for predictive modeling and document automation.
-
-Aiming to build AI systems that integrate vision and text understanding for practical applications.
