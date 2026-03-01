@@ -4,4 +4,4 @@ tf_venv/
 tf_env/
 venv/
 env/
-models/
+models/raguunstructured/model.safetensors
