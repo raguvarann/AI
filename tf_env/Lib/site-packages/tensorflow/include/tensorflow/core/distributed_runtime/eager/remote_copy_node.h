@@ -19,6 +19,7 @@ limitations under the License.
 #include <memory>
 #include <vector>
 
+#include "absl/synchronization/notification.h"
 #include "tensorflow/core/common_runtime/eager/eager_executor.h"
 #include "tensorflow/core/common_runtime/eager/eager_operation.h"
 #include "tensorflow/core/common_runtime/eager/tensor_handle.h"
@@ -62,7 +63,7 @@ namespace eager {
 class RemoteCopyNode : public AsyncEagerNode {
  public:
   RemoteCopyNode(EagerContext* ctx, EagerExecutor* executor, TensorHandle* src,
-                 TensorHandle* dst, Device* recv_device, uint64 recv_op_id);
+                 TensorHandle* dst, Device* recv_device, uint64_t recv_op_id);
 
   ~RemoteCopyNode() override;
 
@@ -72,13 +73,13 @@ class RemoteCopyNode : public AsyncEagerNode {
 
   void Abort(absl::Status status) override;
 
-  string DebugString() const override {
-    string out = "[RemoteCopyNode]";
-    strings::StrAppend(&out, " send_device: ", send_device_->name());
-    strings::StrAppend(&out, ", recv_device: ", recv_device_->name());
-    strings::StrAppend(&out, ", send_tensor: ", src_->DebugString());
-    strings::StrAppend(
-        &out, ", recv_tensor: ", captured_state_->dst()->DebugString());
+  std::string DebugString() const override {
+    std::string out = "[RemoteCopyNode]";
+    absl::StrAppend(&out, " send_device: ", send_device_->name());
+    absl::StrAppend(&out, ", recv_device: ", recv_device_->name());
+    absl::StrAppend(&out, ", send_tensor: ", src_->DebugString());
+    absl::StrAppend(&out,
+                    ", recv_tensor: ", captured_state_->dst()->DebugString());
     return out;
   }
 
@@ -157,7 +158,7 @@ class RemoteCopyNode : public AsyncEagerNode {
     // send_status_ is safe to read only after send_done_.WaitForNotification()
     // has returned.
     absl::Status send_status_;
-    Notification send_done_;
+    absl::Notification send_done_;
     TensorShape src_shape_;
   };
 
@@ -166,8 +167,8 @@ class RemoteCopyNode : public AsyncEagerNode {
   EagerExecutor* const executor_;
   Device* const send_device_;
   Device* const recv_device_;
-  const string wire_id_;
-  const uint64 recv_op_id_;
+  const std::string wire_id_;
+  const uint64_t recv_op_id_;
 
   std::shared_ptr<CapturedSharedState> captured_state_;
   bool started_;
