@@ -1,0 +1,9 @@
+# Exclude all common virtual environment folders
+.venv/
+tf_venv/
+tf_env/
+venv/
+env/
+models/raguunstructured/model.safetensors
+# Exclude all common cache folders
+__pycache__/
