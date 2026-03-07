@@ -1,0 +1,21 @@
+# Web Framework & UI
+streamlit>=1.28.0                      # Rapid prototyping for data apps (port 7860)
+
+# NLP & Transformers
+spacy>=3.6.0                           # Industrial-strength NLP pipeline
+transformers>=4.30.0                   # Hugging Face transformer models (BERT-based NER)
+
+# Deep Learning
+torch>=2.0.0                           # PyTorch tensor framework
+
+# Document Processing
+pymupdf>=1.23.0                        # PyMuPDF (fitz) - PDF text extraction & rendering
+python-docx>=0.8.11                    # Microsoft Word (.docx) document parsing
+
+# Data Processing
+pandas>=1.5.0                          # DataFrame manipulation and tabular analysis
+numpy>=1.24.0                          # Numerical arrays and operations
+
+# Optional: For RAG pipeline
+langchain>=0.1.0                       # LLM framework (if deployed with RAG)
+Pillow>=10.0.0                         # Image processing (if OCR is enabled)
