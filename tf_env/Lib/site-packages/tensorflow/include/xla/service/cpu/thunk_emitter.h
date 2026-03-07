@@ -20,11 +20,13 @@ limitations under the License.
 #include <memory>
 #include <optional>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "absl/container/flat_hash_map.h"
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
+#include "absl/strings/string_view.h"
 #include "absl/types/span.h"
 #include "llvm/ExecutionEngine/Orc/ThreadSafeModule.h"
 #include "mlir/IR/MLIRContext.h"
@@ -40,8 +42,10 @@ limitations under the License.
 #include "xla/runtime/resource_use.h"
 #include "xla/service/buffer_assignment.h"
 #include "xla/service/cpu/ir_emitter2.h"
+#include "xla/service/cpu/parallel_fusion_emitter.h"
 #include "xla/service/hlo_module_config.h"
 #include "xla/shape_util.h"
+#include "xla/tsl/platform/threadpool.h"
 #include "xla/xla_data.pb.h"
 
 namespace xla::cpu {
@@ -66,11 +70,14 @@ class ThunkEmitter {
   };
 
   struct EmittedKernel {
+    EmittedKernel(absl::string_view name, llvm::orc::ThreadSafeModule module)
+        : kernel_name(name), module(std::move(module)) {}
+
     std::string kernel_name;
     llvm::orc::ThreadSafeModule module;
   };
 
-  ThunkEmitter(IrEmitter2& ir_emitter,
+  ThunkEmitter(IrEmitter2& ir_emitter, tsl::thread::ThreadPool& thread_pool,
                const BufferAssignment& buffer_assignment,
                const TargetMachineFeatures& target_machine_features,
                const HloModule& hlo_module,
@@ -80,12 +87,12 @@ class ThunkEmitter {
   // Emits HLO module entry computation as a sequence of thunks.
   absl::StatusOr<ThunkSequence> EmitEntryComputation(const HloModule& module);
 
-  std::vector<EmittedKernel>& kernels() { return kernels_; }
+  absl::StatusOr<std::vector<EmittedKernel>> ConsumeKernels();
 
  private:
   struct HostKernelAllocationSlices {
-    std::vector<BufferAllocation::Slice> arguments;
-    std::vector<BufferAllocation::Slice> results;
+    std::vector<ShapedSlice> arguments;
+    std::vector<ShapedSlice> results;
   };
 
   std::optional<SortThunk::SortDirection> MatchSortDirection(
@@ -199,6 +206,9 @@ class ThunkEmitter {
   absl::StatusOr<ThunkSequence> EmitTopKThunk(
       const HloCustomCallInstruction* custom_call);
 
+  absl::StatusOr<ThunkSequence> EmitOneDnnOpThunk(
+      const HloInstruction* instruction);
+
   absl::StatusOr<ThunkSequence> EmitSliceThunk(
       const HloInstruction* instruction);
 
@@ -209,6 +219,9 @@ class ThunkEmitter {
       const HloInstruction* instruction);
 
   absl::StatusOr<ThunkSequence> EmitXnnFusionThunk(
+      const HloInstruction* instruction);
+
+  absl::StatusOr<ThunkSequence> EmitYnnFusionThunk(
       const HloInstruction* instruction);
 
   absl::StatusOr<ThunkSequence> EmitOneDnnFusionThunk(
@@ -259,8 +272,12 @@ class ThunkEmitter {
 
   std::vector<EmittedKernel> kernels_;
 
-  FusionCompiler fusion_compiler_;
   std::unique_ptr<mlir::MLIRContext> mlir_context_;
+  FusionCompiler fusion_compiler_;
+
+  absl::flat_hash_map<std::string, KernelSpec> kernel_spec_cache_;
+
+  ParallelFusionEmitter parallel_fusion_emitter_;
 };
 
 }  // namespace xla::cpu
