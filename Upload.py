@@ -3,7 +3,7 @@ sys.path.append(r'C:\Users\raguv\AppData\Roaming\Python\Python311\site-packages'
 
 from huggingface_hub import HfApi
 
-token = "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" 
+token = "testoken" 
 
 api = HfApi(token=token)
 
