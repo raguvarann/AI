@@ -1,5 +1,5 @@
 {
-    "python.defaultInterpreterPath": "${workspaceFolder}/tf_env/Scripts/python.exe",
+    "python.defaultInterpreterPath": "d:\\AI\\tf_env\\Scripts\\python.exe",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "[python]": {
