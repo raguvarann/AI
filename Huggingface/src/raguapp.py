@@ -17,12 +17,12 @@ def extract_text(uploaded_file):
         return "\n".join([p.text for p in doc.paragraphs]).encode("utf-8")
     return uploaded_file.getvalue()
 
-st.set_page_config(page_title="RAGU Analysis", layout="wide")
-st.title("🔍 RAGU Document Analysis")
+st.set_page_config(page_title="SmartNLP", layout="wide")
+st.title("🔍 SmartNLP")
 
-uploaded_file = st.file_uploader("Upload any document", type=None)
+uploaded_file = st.file_uploader("Upload any", type=None)
 
-if uploaded_file and st.button("Analyze Document"):
+if uploaded_file and st.button("Analyze"):
     with st.spinner("Processing..."):
         try:
             results = run_ragu_pipeline(extract_text(uploaded_file))
