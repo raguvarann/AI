@@ -40,7 +40,7 @@ def run_ragu_pipeline(file_bytes):
     try:
         doc_struct = nlp_struct(text)
         for ent in doc_struct.ents:
-            if ent.label_ in ["TICKER", "PERCENTAGE", "FIN_INST"]:
+            if ent.label_ in ["SYMBOL", "RATIO", "NETWORK"]:
                 final_entities[(ent.start_char, ent.end_char)] = {
                     "Text": ent.text, "Label": ent.label_, "Method": "Structured"
                 }
