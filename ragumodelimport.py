@@ -13,7 +13,7 @@ nlp_ragu_unstruct = pipeline(
 )
 
 # Sample text
-sample = "The RBI intervention caused a 2.75% shift in the repo rate, affecting Banks."
+sample = "The National Bureau intervention caused a 2.75% shift in the benchmark rate, affecting Trade Organizations."
 
 # Processing through both pipelines
 doc_struct = nlp_ragu_struct(sample)

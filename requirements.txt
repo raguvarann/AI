@@ -1,30 +1,86 @@
-# Core ML/DL Frameworks
-torch>=2.0.0                          # PyTorch deep learning framework
-tensorflow>=2.13.0                    # TensorFlow/Keras for neural networks
-scikit-learn>=1.3.0                   # Machine learning algorithms (SVM, ensemble, clustering)
+# ============================================================================
+# RAGU: Retrieval-Augmented Generation & Understanding - Dependencies
+# ============================================================================
+# Python 3.9+ required. Install with: pip install -r requirements.txt
 
-# NLP & Transformers
-transformers>=4.30.0                  # Hugging Face transformer models (BERT, NER)
-spacy>=3.6.0                          # Industrial-strength NLP pipeline
+# ======================
+# DEEP LEARNING FRAMEWORKS
+# ======================
+torch>=2.0.0,<3.0.0                   # PyTorch: tensor operations & neural networks
+torch-vision>=0.15.0                  # Computer vision utilities
+tensorflow>=2.13.0,<3.0.0             # TensorFlow: Keras neural networks
+tensorflow-hub>=0.14.0                # Pre-trained TensorFlow models
 
-# Data Processing
-pandas>=1.5.0                         # DataFrame manipulation and analysis
-numpy>=1.24.0                         # Numerical computing and array operations
-
-# Document Processing
-pdfplumber>=0.9.0                     # Extract text/tables from PDF files
-python-docx>=0.8.11                   # Read/write Microsoft Word documents
-Pillow>=10.0.0                        # Image processing (PIL)
-pytesseract>=0.3.10                   # OCR integration with Tesseract
-PyMuPDF>=1.23.0                       # PDF manipulation and text extraction (fitz)
-
-# LLM & RAG
-langchain>=0.1.0                      # LLM framework for chaining operations
+# ======================
+# NLP & TEXT PROCESSING
+# ======================
+transformers>=4.30.0,<5.0.0           # Hugging Face: BERT, GPT, NER models
+spacy>=3.6.0,<4.0.0                   # Industrial NLP pipeline (POS, NER, parsing)
+langchain>=0.1.0,<1.0.0               # LLM orchestration & chaining
 langchain-community>=0.0.10            # Community integrations for LangChain
-ollama>=0.1.0                         # Local LLM integration
+sentence-transformers>=2.2.0          # Semantic embeddings & similarity
 
-# Cloud & APIs
-google-cloud-aiplatform>=1.33.0       # Google Vertex AI client SDK
+# ============================
+# MACHINE LEARNING & ALGORITHMS
+# ============================
+scikit-learn>=1.3.0,<2.0.0            # ML: Random Forest, SVM, clustering, preprocessing
+numpy>=1.24.0,<2.0.0                  # Numerical computing & arrays
+scipy>=1.10.0,<2.0.0                  # Scientific computing (stats, optimization)
+pandas>=1.5.0,<3.0.0                  # DataFrames & tabular data analysis
+xgboost>=2.0.0                        # Gradient boosting (alternative to sklearn)
 
-# Web Framework
-streamlit>=1.28.0                     # Rapid prototyping for data apps
+# ==================
+# DOCUMENT PROCESSING
+# ==================
+PyMuPDF>=1.23.0                       # PDF text extraction & manipulation (fitz)
+pdfplumber>=0.9.0                     # Advanced PDF table/text extraction
+python-docx>=0.8.11                   # Microsoft Word (.docx) processing
+pytesseract>=0.3.10                   # Python wrapper for Tesseract OCR
+pdf2image>=1.16.0                     # Convert PDF pages to images
+
+# ================
+# IMAGE PROCESSING
+# ================
+Pillow>=10.0.0                        # Image processing & manipulation (PIL)
+opencv-python>=4.8.0                  # Computer vision operations
+scikit-image>=0.21.0                  # Image processing algorithms
+
+# ===================
+# VECTOR DATABASE & SEARCH
+# ===================
+chromadb>=0.3.21,<1.0.0               # Vector database for semantic search
+hnswlib>=0.7.0                        # Approximate nearest neighbor search (HNSW)
+
+# =============================
+# WEB FRAMEWORK & VISUALIZATION
+# =============================
+streamlit>=1.28.0                     # Interactive web apps for ML
+plotly>=5.14.0                        # Interactive visualizations
+matplotlib>=3.7.0                     # Static plotting
+seaborn>=0.12.0                       # Statistical data visualization
+altair>=4.2.0                         # Declarative visualization
+
+# ========================
+# CLOUD & EXTERNAL SERVICES
+# ========================
+google-cloud-aiplatform>=1.33.0       # Google Vertex AI SDK
+google-auth>=2.22.0                   # Google Cloud authentication
+ollama>=0.1.0                         # Local LLM inference client
+
+# ===============================
+# UTILITIES & DATA SERIALIZATION
+# ===============================
+requests>=2.31.0                      # HTTP client for APIs
+python-dotenv>=1.0.0                  # Environment variable management
+pyyaml>=6.0                           # YAML parsing
+jsonlines>=3.1.0                      # Newline-delimited JSON processing
+tqdm>=4.65.0                          # Progress bars
+joblib>=1.3.0                         # Parallel computing & caching
+
+# =======================
+# DEVELOPMENT & DEBUGGING
+# =======================
+jupyter>=1.0.0                        # Interactive notebooks
+ipython>=8.10.0                       # Enhanced Python shell
+python-dotenv>=1.0.0                  # Load .env files
+autopep8>=2.0.0                       # Code formatting

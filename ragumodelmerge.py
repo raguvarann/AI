@@ -1,69 +1,29 @@
-import spacy
-from transformers import pipeline
 import os
+import spacy
+from transformers import AutoModelForTokenClassification, AutoTokenizer
 
-#ragu models
-STRUCTURED_MODEL_PATH = "D:/AI/models/ragustructured"
-UNSTRUCTURED_MODEL_PATH = "D:/AI/models/raguunstructured"
+# Define your paths
+STRUCTURED_PATH = "D:/AI/models/ragustructured"
+UNSTRUCTURED_PATH = "D:/AI/models/raguunstructured"
 
-print("Loading Ragu Models... please wait.")
+# Create directories if they don't exist
+os.makedirs(STRUCTURED_PATH, exist_ok=True)
+os.makedirs(UNSTRUCTURED_PATH, exist_ok=True)
 
-# Load the spaCy "Structured" model
-nlp_ragu_struct = spacy.load(STRUCTURED_MODEL_PATH)
+print("Downloading and saving models to D: drive... this may take a minute.")
 
-# Load the BERT "Unstructured" model
-nlp_ragu_unstruct = pipeline(
-    "ner", 
-    model=UNSTRUCTURED_MODEL_PATH, 
-    tokenizer=UNSTRUCTURED_MODEL_PATH,
-    aggregation_strategy="simple"
-)
+# 1. Save the spaCy "Structured" model
+nlp = spacy.load("en_core_web_sm")
+nlp.to_disk(STRUCTURED_PATH)
+print(f"✓ Saved Structured model to {STRUCTURED_PATH}")
 
-# MERGE FUNCTION
-def get_ragu_entities(text):
+# 2. Save the BERT "Unstructured" model
+model_name = "dslim/bert-base-NER"
+model = AutoModelForTokenClassification.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    # getting raw hits from both "Ragu" models
-    doc_struct = nlp_ragu_struct(text)
-    res_unstruct = nlp_ragu_unstruct(text)
-    
-    # dictionary to store entities by their character position (start, end)
-    final_entities = {}
+model.save_pretrained(UNSTRUCTURED_PATH)
+tokenizer.save_pretrained(UNSTRUCTURED_PATH)
+print(f"✓ Saved Unstructured model to {UNSTRUCTURED_PATH}")
 
-    # Process Structured first (THE RULES)
-    for ent in doc_struct.ents:
-        # We only prioritize our high-confidence custom labels
-        if ent.label_ in ["TICKER", "PERCENTAGE", "FIN_INST"]:
-            span = (ent.start_char, ent.end_char)
-            final_entities[span] = {
-                "text": ent.text,
-                "label": ent.label_,
-                "method": "Structured (Verified)"
-            }
-
-    # Process Unstructured (THE AI GUESSTIMATES)
-    for ent in res_unstruct:
-        span = (ent['start'], ent['end'])
-        # IF THIS POSITION IS NOT ALREADY TAKEN BY A RULE, ADD IT
-        if span not in final_entities:
-            final_entities[span] = {
-                "text": ent['word'],
-                "label": ent['entity_group'],
-                "method": "Unstructured (Detected)"
-            }
-            
-    return list(final_entities.values())
-
-# TEST THE PIPELINE
-if __name__ == "__main__":
-    print("\n--- RAGU MASTER PIPELINE ACTIVE ---\n")
-    
-    test_text = "The RBI reported that Banks are seeing a 2.75% growth."
-    
-    # Running the merge function
-    clean_results = get_ragu_entities(test_text)
-
-    # Print a clean, formatted table
-    print(f"{'Text':<15} | {'Label':<12} | {'Method'}")
-    print("-" * 50)
-    for e in clean_results:
-        print(f"{e['text']:<15} | {e['label']:<12} | {e['method']}")
+print("\nSetup complete! You can now run ragumodelmerge.py")
