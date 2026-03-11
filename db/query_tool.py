@@ -1,6 +1,6 @@
 import chromadb
 
-# Initialize the same client and collection
+# Initialize the  client and collection
 client = chromadb.PersistentClient(path="./my_chroma_data")
 collection = client.get_or_create_collection(name="pdf_knowledge_base")
 

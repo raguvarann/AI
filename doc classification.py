@@ -11,18 +11,14 @@ from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
 # Example dataset
 data = {
     "text": [
-        "Employee salary for February 2026: $1000",
-        "Rental payment for apartment 12B, February 2026",
+        "Rental charge for apartment 12B, February 2026",
         "Invoice #1234: Purchase of office supplies",
-        "Payslip for March 2026",
         "Landlord receipt for February rent"
     ],
     "label": [
-        "payslip",
         "rental",
         "invoice",
-        "payslip",
-        "rental"
+        "receipt"
     ]
 }
 
