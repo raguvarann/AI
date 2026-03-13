@@ -18,11 +18,11 @@ def extract_text(uploaded_file):
     return uploaded_file.getvalue()
 
 st.set_page_config(page_title="RAGU Analysis", layout="wide")
-st.title("🔍 RAGU Document Analysis")
+st.title("🔍 RAGU Common Analysis")
 
-uploaded_file = st.file_uploader("Upload any document", type=None)
+uploaded_file = st.file_uploader("Upload any common", type=None)
 
-if uploaded_file and st.button("Analyze Document"):
+if uploaded_file and st.button("Analyze Common"):
     with st.spinner("Processing..."):
         try:
             results = run_ragu_pipeline(extract_text(uploaded_file))

@@ -1,8 +1,8 @@
 # RAGU: Retrieval-Augmented Generation & Understanding
 
-**Overview**: A comprehensive AI/ML platform combining NLP, document intelligence, predictive analytics, and retrieval systems for intelligent document analysis and question-answering capabilities.
+**Overview**: A comprehensive AI/ML platform combining NLP, common intelligence, predictive analytics, and retrieval systems for intelligent common analysis and question-answering capabilities.
 
-**Simple Explanation**: Extract and analyze information from documents using advanced AI models that understand both structured and unstructured text, perform OCR on images, and answer questions about your documents.
+**Simple Explanation**: Extract and analyze information from common sources using advanced AI models that understand both structured and unstructured text, perform OCR on images, and answer questions about your content.
 
 **Technical Focus**: Production-ready Python suite featuring spaCy NLP pipelines, BERT transformers, scikit-learn ML models, ChromaDB vector storage, and Streamlit web interface for end-to-end RAG systems.
 
@@ -51,7 +51,7 @@ python -m spacy download en_core_web_md
 | **Deep Learning** | TensorFlow 2.13+, PyTorch 2.0+, Keras |
 | **NLP & Transformers** | Hugging Face Transformers 4.30+, spaCy 3.6+ |
 | **Machine Learning** | scikit-learn 1.3+, ensemble methods, SVM, clustering |
-| **Document Processing** | PyMuPDF, python-docx, pdfplumber, pytesseract |
+| **Common Processing** | PyMuPDF, python-docx, pdfplumber, pytesseract |
 | **Vector Database** | ChromaDB (semantic search) |
 | **LLM Integration** | LangChain 0.1+, Ollama (local inference) |
 | **Cloud & APIs** | Google Vertex AI 1.33+ |
@@ -64,20 +64,20 @@ python -m spacy download en_core_web_md
 AI/
 ├── requirements.txt                      # All dependencies with pinned versions
 ├── models/                               # Pre-trained ML models
-│   ├── ragustructured/                   # spaCy NER model (entity extraction)
-│   └── raguunstructured/                 # BERT transformer model (token classification)
+│   ├── ragustructured/                   # spaCy NER model (entity parsing)
+│   └── raguunstructured/                 # BERT transformer model (token categorization)
 ├── tf_env/                               # Pre-configured Python virtual environment
 │
-├── 📄 [DOCUMENT PROCESSING]
-│   ├── raguapp.py                        # Streamlit UI - Upload & analyze documents
+├── 📄 [COMMON PROCESSING]
+│   ├── raguapp.py                        # Streamlit UI - Upload & analyze common content
 │   ├── raguwrapper.py                    # RAG pipeline coordinator
 │   ├── ragumodelimport.py                # Import/load ML models
 │   ├── ragumodelmerge.py                 # Combine multiple model outputs
-│   └── Upload.py                         # Document upload handler
+│   └── Upload.py                         # Common upload handler
 │
 ├── 🔤 [NLP & TEXT PROCESSING]
 │   ├── nlp.py                            # spaCy NLP demos (POS tagging, NER, parsing)
-│   ├── Structured.py                     # Structured info extraction + entity rules
+│   ├── Structured.py                     # Structured info parsing + entity rules
 │   ├── Unstructured.py                   # BERT-based NER for free-form text
 │   └── modelnlp.py                       # Domain-specific NLP utilities
 │
@@ -85,8 +85,8 @@ AI/
 │   └── ocr.py                            # Tesseract OCR pipeline + image preprocessing
 │
 ├── 🎯 [PREDICTIVE MODELS]
-│   ├── Predictive.py                     # scikit-learn classification/regression
-│   ├── doc classification.py             # LSTM-based multi-class document categorization
+│   ├── Predictive.py                     # scikit-learn categorization/regression
+│   ├── doc categorization.py             # LSTM-based multi-class content categorization
 │   └── predictive_userinteraction.py     # Interactive ML demo
 │
 ├── 🤖 [LLM & CLOUD]
@@ -97,7 +97,7 @@ AI/
 │   └── db/
 │       ├── chroma_app.py                 # ChromaDB storage & management
 │       ├── query_tool.py                 # Semantic search & retrieval
-│       ├── watcher.py                    # Monitor incoming documents
+│       ├── watcher.py                    # Monitor incoming content
 │       ├── incoming_pdfs/                # PDFs awaiting processing
 │       └── my_chroma_data/               # Vector database storage
 │
@@ -119,9 +119,9 @@ AI/
 
 ## 🎯 Feature Overview
 
-### 📄 Document Intelligence
+### 📄 Common Intelligence
 - **Upload & Parse**: Support for PDF, DOCX, TXT files
-- **Entity Extraction**: Identify people, organizations, locations, amounts
+- **Entity Parsing**: Identify people, organizations, locations, amounts
 - **OCR**: Extract text from scanned images (requires Tesseract)
 - **Export**: Download results as CSV or TXT
 
@@ -132,14 +132,14 @@ AI/
 - **Entity Linking**: Match entities to predefined patterns
 
 ### 🤖 Machine Learning
-- **Classification**: Categorize documents by type
+- **Categorization**: Categorize content by type
 - **Regression**: Predict numerical values from features
 - **Ensemble Methods**: Combine multiple models for better accuracy
 - **Feature Importance**: Understand which factors drive predictions
 
 ### 📚 Vector Search
-- **Semantic Search**: Find similar documents using ChromaDB
-- **Question Answering**: Query documents with natural language
+- **Semantic Search**: Find similar content using ChromaDB
+- **Question Answering**: Query content with natural language
 - **Metadata Filtering**: Filter results by category, source, date
 - **Relevance Scoring**: Rank results by similarity
 
@@ -147,18 +147,18 @@ AI/
 
 ## 📖 Detailed Module Guide
 
-### Document Processing
+### Common Processing
 
 #### raguapp.py (Main Streamlit Interface)
-- **What it does**: Web UI for uploading and analyzing documents
+- **What it does**: Web UI for uploading and analyzing common content
 - **Input**: PDF, DOCX, or TXT files
 - **Output**: Entity table with confidence scores, downloadable CSV/TXT
 - **Technical**: Streamlit framework, multi-page layout, async file processing
 - **Usage**: `streamlit run raguapp.py` → Open http://localhost:8501
 
 #### raguwrapper.py (RAG Pipeline)
-- **What it does**: Orchestrates structured + unstructured extraction
-- **Input**: Raw document text
+- **What it does**: Orchestrates structured + unstructured parsing
+- **Input**: Raw common text
 - **Output**: Merged entity results with scores
 - **Technical**: Combines spaCy structured model with BERT unstructured model
 - **Key function**: `run_ragu_pipeline(text)` → list of entities
@@ -179,7 +179,7 @@ AI/
 - **Models loaded**: en_core_web_sm (40MB), en_core_web_md (optional)
 - **Usage**: `python nlp.py`
 
-#### Structured.py (Rule-based Extraction)
+#### Structured.py (Rule-based Parsing)
 - **What it does**: Extract specific patterns (ticker symbols, percentages, organizations)
 - **Approach**: Define custom patterns → apply entity ruler to text
 - **Patterns included**: 
@@ -192,7 +192,7 @@ AI/
 - **What it does**: Extract entities from free-form text using deep learning
 - **Model**: dslim/bert-base-NER (BERT fine-tuned for NER task)
 - **From simple view**: Understands context, can handle variations better than rules
-- **From technical view**: Token classification, subword tokenization, attention mechanisms
+- **From technical view**: Token categorization, subword tokenization, attention mechanisms
 - **Output**: Entity text, label (PER, ORG, LOC, MISC), confidence score
 - **Usage**: `python Unstructured.py`
 
@@ -213,21 +213,21 @@ AI/
 ### Predictive Modeling
 
 #### Predictive.py (scikit-learn)
-- **What it does**: Train ML models for classification and regression
+- **What it does**: Train ML models for categorization and regression
 - **Models available**:
-  - Classification: Logistic Regression, Random Forest, SVM
+  - Categorization: Logistic Regression, Random Forest, SVM
   - Regression: Linear Regression, Ridge Regression, Gradient Boosting
 - **From simple view**: Predict values based on input features
 - **From technical view**: Train-test split, feature scaling, cross-validation, hyperparameter tuning
 - **Sample**: House price prediction from square footage, bedrooms, age
 - **Usage**: `python Predictive.py`
 
-#### doc classification.py (Deep Learning)
-- **What it does**: Classify documents using LSTM neural network
-- **From simple view**: Automatically categorize documents by type
+#### doc categorization.py (Deep Learning)
+- **What it does**: Classify common content using LSTM neural network
+- **From simple view**: Automatically categorize common content by type
 - **From technical view**: LSTM layers, embedding layer, Keras, multi-class softmax output
 - **Architecture**: Embeddings → LSTM → Dense layers → softmax
-- **Usage**: `python 'doc classification.py'`
+- **Usage**: `python 'doc categorization.py'`
 
 #### predictive_userinteraction.py
 - **What it does**: Interactive model demo and analysis
@@ -240,7 +240,7 @@ AI/
 
 #### simple_llm.py (Local LLM with Ollama)
 - **What it does**: Use LangChain to run LLMs locally without cloud costs
-- **From simple view**: Ask questions and get answers from your documents
+- **From simple view**: Ask questions and get answers from your content
 - **From technical view**: LangChain chains, prompt templates, local model inference
 - **Requirement**: Ollama running locally (`ollama serve`)
 - **Usage**: `python simple_llm.py`
@@ -256,7 +256,7 @@ AI/
 ### Vector Database & Semantic Search
 
 #### db/chroma_app.py (ChromaDB Vector Storage)
-- **What it does**: Store documents as vectors for semantic search
+- **What it does**: Store content as vectors for semantic search
 - **From simple view**: Build a searchable knowledge base from PDFs
 - **From technical view**: Embeddings, vector database, persistent storage
 - **Storage**: SQLite-backed, local persistent storage in `my_chroma_data/`
@@ -264,11 +264,11 @@ AI/
 
 #### db/query_tool.py (Interactive Search)
 - **What it does**: Query the vector database with natural language
-- **From simple view**: Ask questions and find relevant documents
+- **From simple view**: Ask questions and find relevant content
 - **From technical view**: Semantic similarity search, metadata filtering
 - **Usage**: `python db/query_tool.py` → Interactive prompt
 
-#### db/watcher.py (Document Monitor)
+#### db/watcher.py (Common Monitor)
 - **What it does**: Automatically process new PDFs in a folder
 - **From simple view**: Drop PDFs in a folder, they get analyzed automatically
 - **From technical view**: File system watcher pattern, async processing
@@ -294,7 +294,7 @@ AI/
 - **Type**: Deep learning transformer for NER
 - **Size**: ~350MB (model.safetensors) + tokenizer
 - **Model**: dslim/bert-base-NER
-- **Capabilities**: Token classification with attention mechanisms
+- **Capabilities**: Token categorization with attention mechanisms
 - **Best for**: Free-form text, context-dependent entities
 - **Example**: Finding company names, people in natural text
 
@@ -310,15 +310,15 @@ AI/
 
 # Text Processing
 python nlp.py                           # spaCy demos
-python Structured.py                    # Rule-based extraction
+python Structured.py                    # Rule-based parsing
 python Unstructured.py                  # BERT NER
 
 # Vision & OCR
 python ocr.py                           # Extract text from images
 
 # Predictive Models
-python Predictive.py                    # Classification/Regression
-python 'doc classification.py'          # LSTM document classification
+python Predictive.py                    # Categorization/Regression
+python 'doc categorization.py'          # LSTM content categorization
 
 # Vector Database
 python db/chroma_app.py                 # Build knowledge base
@@ -338,12 +338,12 @@ python simple_llm.py                    # Requires Ollama running
    streamlit run raguapp.py
    ```
 
-2. **Upload Document**
+2. **Upload Content**
    - Drag & drop or browse for PDF/DOCX/TXT
    - App automatically extracts text
 
 3. **Run Analysis**
-   - Click "Analyze Document"
+   - Click "Analyze Common"
    - Entities appear as table
    - View confidence scores
 
@@ -441,9 +441,9 @@ gcloud run deploy ragu-analysis \
 | `numpy` | 1.24+ | Numerical arrays & operations | 50MB |
 | `Pillow` | 10.0+ | Image processing & manipulation | 10MB |
 | `pytesseract` | 0.3.10+ | Python OCR wrapper | <1MB |
-| `PyMuPDF` (fitz) | 1.23+ | PDF text & image extraction | 50MB |
+| `PyMuPDF` (fitz) | 1.23+ | PDF text & image parsing | 50MB |
 | `python-docx` | 0.8.11+ | Microsoft Word file parsing | 5MB |
-| `pdfplumber` | 0.9+ | Advanced PDF extraction (tables, etc) | 5MB |
+| `pdfplumber` | 0.9+ | Advanced PDF parsing (tables, etc) | 5MB |
 | `chromadb` | 0.3+ | Vector database & embeddings | 100MB |
 | `langchain` | 0.1+ | LLM framework & chains | 50MB |
 | `ollama` | 0.1+ | Local LLM inference | <1MB |
@@ -488,7 +488,7 @@ nlp = spacy.load("en_core_web_sm")  # Load once, reuse
 |------|-------|-----------------|-----|-----|
 | NER | spaCy | 500ms | N/A | N/A |
 | NER | BERT | 5s | ✓ 1s | ✗ 5s |
-| Classification | LSTM | 2s | ✓ 0.5s | ✗ 2s |
+| Categorization | LSTM | 2s | ✓ 0.5s | ✗ 2s |
 | OCR | Tesseract | 10s | N/A | N/A |
 
 ---
@@ -528,7 +528,7 @@ nlp = spacy.load("en_core_web_sm")  # Load once, reuse
   python -m spacy download en_core_web_md
   ```
 
-**Problem**: PDF/DOCX extraction returns empty
+**Problem**: PDF/DOCX parsing returns empty
 - **Check**: File is valid & text-based (not image-only PDF)
 - **Solution**: Run OCR first for scanned PDFs
 
@@ -542,16 +542,16 @@ nlp = spacy.load("en_core_web_sm")  # Load once, reuse
 
 ### Model & Data Issues
 
-**Problem**: Low entity extraction accuracy
+**Problem**: Low entity parsing accuracy
 - **Cause**: Model trained on different domain
 - **Solutions**:
-  1. Use rule-based extraction for known patterns (Structured.py)
+  1. Use rule-based parsing for known patterns (Structured.py)
   2. Fine-tune model on your domain data
   3. Combine multiple models (ragumodelmerge.py)
 
 **Problem**: ChromaDB returns no results
 - **Check**: Database populated? Run `db/chroma_app.py` first
-- **Solution**: Add documents and ensure semantic search is enabled
+- **Solution**: Add content and ensure semantic search is enabled
 
 ---
 

@@ -30,10 +30,10 @@ pandas>=1.5.0,<3.0.0                  # DataFrames & tabular data analysis
 xgboost>=2.0.0                        # Gradient boosting (alternative to sklearn)
 
 # ==================
-# DOCUMENT PROCESSING
+# COMMON PROCESSING
 # ==================
-PyMuPDF>=1.23.0                       # PDF text extraction & manipulation (fitz)
-pdfplumber>=0.9.0                     # Advanced PDF table/text extraction
+PyMuPDF>=1.23.0                       # PDF text parsing & manipulation (fitz)
+pdfplumber>=0.9.0                     # Advanced PDF table/text parsing
 python-docx>=0.8.11                   # Microsoft Word (.docx) processing
 pytesseract>=0.3.10                   # Python wrapper for Tesseract OCR
 pdf2image>=1.16.0                     # Convert PDF pages to images

@@ -14,7 +14,7 @@ class PDFHandler(FileSystemEventHandler):
             return
         
         print(f"New file detected: {event.src_path}")
-        # Logic to read and add to ChromaDB
+        # Logic to read and add content to ChromaDB
         reader = PdfReader(event.src_path)
         for i, page in enumerate(reader.pages):
             text = page.extract_text()

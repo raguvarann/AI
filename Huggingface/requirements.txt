@@ -8,8 +8,8 @@ transformers>=4.30.0                   # Hugging Face transformer models (BERT-b
 # Deep Learning
 torch>=2.0.0                           # PyTorch tensor framework
 
-# Document Processing
-pymupdf>=1.23.0                        # PyMuPDF (fitz) - PDF text extraction & rendering
+# Common Processing
+pymupdf>=1.23.0                        # PyMuPDF (fitz) - PDF text parsing & rendering
 python-docx>=0.8.11                    # Microsoft Word (.docx) document parsing
 
 # Data Processing

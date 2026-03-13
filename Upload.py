@@ -9,7 +9,7 @@ api = HfApi(token=token)
 
 api.upload_folder(
     folder_path = "D:/AI/Huggingface",
-    repo_id="raguaillm/DocumentAnalysis",
+    repo_id="raguaillm/CommonAnalysis",
     repo_type="space",
     # path_in_repo="src"
 )
