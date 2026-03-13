@@ -64,7 +64,7 @@ loss, acc = model.evaluate(X_test_pad, y_test)
 print("Test Accuracy:", acc)
 
 # Predict function
-def classify_document(text):
+def classify_common(text):
     seq = tokenizer.texts_to_sequences([text])
     pad = pad_sequences(seq, maxlen=max_len, padding='post')
     pred = model.predict(pad)
@@ -72,5 +72,5 @@ def classify_document(text):
     return label
 
 # Test prediction
-doc_text = "This month’s salary statement for John Doe"
-print("Document Type:", classify_document(doc_text))
+common_text = "This month’s salary statement for John Doe"
+print("Common Type:", classify_common(common_text))

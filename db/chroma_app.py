@@ -4,13 +4,13 @@ import chromadb  # Import the actual library, not the file name
 client = chromadb.PersistentClient(path="./my_chroma_data")
 
 # # Delete the collection if it exists to start fresh
-# client.delete_collection("my_documents")
+# client.delete_collection("my_common")
 
 
 # collection
-collection = client.get_or_create_collection(name="my_documents")
+collection = client.get_or_create_collection(name="my_common")
 
-# Add documents
+# Add common content
 collection.upsert(
     documents=["Doc 1 text_v1", "Doc 1 text", "Doc 2 text", "Doc 3 text"],
     ids=["id1_v1", "id1","id2", "id3"],
@@ -27,7 +27,7 @@ all_data = collection.get()
 
 # Zip the lists together to see the exact state of each record
 for i in range(len(all_data['ids'])):
-    print(f"ID: {all_data['ids'][i]} | Doc: {all_data['documents'][i]} | Meta: {all_data['metadatas'][i]}")
+    print(f"ID: {all_data['ids'][i]} | Content: {all_data['documents'][i]} | Meta: {all_data['metadatas'][i]}")
 
 
 # # Query the database
@@ -42,9 +42,9 @@ for i in range(len(all_data['ids'])):
 # # Retrieve all records
 # all_data = collection.get()
 
-# # Print IDs, Documents, and Metadata separately
+# # Print IDs, Content, and Metadata separately
 # print("IDs:", all_data['ids'])
-# print("Documents:", all_data['documents'])
+# print("Content:", all_data['documents'])
 # print("Metadata:", all_data['metadatas'])
 
 
